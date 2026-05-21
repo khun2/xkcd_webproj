@@ -44,6 +44,19 @@ async function random_xkcd() {
   document.body.classList.remove('loading')
 }
 
+function corsError() {
+    const alertMessage = "This website needs a CORS proxy to work!\n\n" +
+                        "To make the site work:\n" +
+                        "1. Click OK to open the CORS proxy website\n" +
+                        "2. Click 'Request temporary access to the demo server'\n" +
+                        "3. Return to this page and refresh\n\n" +
+                        "Would you like to open cors-anywhere.herokuapp.com now?";
+    
+    if (confirm(alertMessage)) {
+        window.open('https://cors-anywhere.herokuapp.com', '_blank');
+    }
+}
+
 let newest_xkcd_num;
 const body = document.body;
 const title = document.getElementById("title");
@@ -52,5 +65,6 @@ const date = document.getElementById("date");
 const button = document.getElementById("button");
 const img = document.getElementById("img");
 const info = document.getElementById("info");
+corsError();
 new_xkcd();
 button.addEventListener("click", random_xkcd);
