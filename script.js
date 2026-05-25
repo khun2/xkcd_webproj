@@ -1,5 +1,10 @@
 async function getch(url) {
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    method: "get",
+    headers: new Headers({
+      "ngrok-skip-browser-warning": "5000",
+    }),
+  });
   const json_promise = await response.json();
   return json_promise;
 }
