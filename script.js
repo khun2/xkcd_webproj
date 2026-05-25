@@ -10,8 +10,8 @@ function constructDate(day, month, year) {
 
 async function new_xkcd() {
   // Use a CORS proxy
-  document.body.classList.add('loading')
-  const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+  document.body.classList.add("loading");
+  const proxyUrl = "https://email-much-unclad.ngrok-free.dev/";
   let data = await getch(proxyUrl + "https://xkcd.com/info.0.json");
   console.log(data);
   newest_xkcd_num = data.num;
@@ -21,14 +21,15 @@ async function new_xkcd() {
   info.innerHTML = data.alt;
   img.src = data.img;
   img.alt = data.transcript;
-  document.body.classList.remove('loading')
+  document.body.classList.remove("loading");
 }
 
 async function random_xkcd() {
-  document.body.classList.add('loading')
-  const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+  document.body.classList.add("loading");
+  const proxyUrl = "https://email-much-unclad.ngrok-free.dev/";
   console.log(
-    `https://xkcd.com/${Math.floor(Math.random() * newest_xkcd_num + 1)}/info.0.json`,
+    proxyUrl +
+      `https://xkcd.com/${Math.floor(Math.random() * newest_xkcd_num + 1)}/info.0.json`,
   );
   let data = await getch(
     proxyUrl +
@@ -41,20 +42,7 @@ async function random_xkcd() {
   info.innerHTML = data.alt;
   img.src = data.img;
   img.alt = data.transcript;
-  document.body.classList.remove('loading')
-}
-
-function corsError() {
-    const alertMessage = "This website needs a CORS proxy to work!\n\n" +
-                        "To make the site work:\n" +
-                        "1. Click OK to open the CORS proxy website\n" +
-                        "2. Click 'Request temporary access to the demo server'\n" +
-                        "3. Return to this page and refresh\n\n" +
-                        "Would you like to open cors-anywhere.herokuapp.com now?";
-    
-    if (confirm(alertMessage)) {
-        window.open('https://cors-anywhere.herokuapp.com', '_blank');
-    }
+  document.body.classList.remove("loading");
 }
 
 let newest_xkcd_num;
@@ -65,6 +53,5 @@ const date = document.getElementById("date");
 const button = document.getElementById("button");
 const img = document.getElementById("img");
 const info = document.getElementById("info");
-corsError();
 new_xkcd();
 button.addEventListener("click", random_xkcd);
